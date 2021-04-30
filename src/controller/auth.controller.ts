@@ -25,7 +25,7 @@ export const signIn = async (req: Request, res: Response) => {
     const user = await User.findOne({ email });
     if (!user) return res.status(400).json({ message: 'Email or password is wrong' });
 
-    const correctPass = await user.validatePassword(password);
+    const correctPass = await user.validatePassword(password, user.password);
     if(!correctPass) return res.status(400).json({ message: 'Invalid password' });
 
     const token: string = jwt.sign({ _id: user._id }, process.env.TOKEN_SECRET || 'asd1234', {

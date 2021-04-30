@@ -35,8 +35,8 @@ userSchema.methods.encrypPassword = async (password: string): Promise<string> =>
     return bcrypt.hash(password, salt);
 };
 
-userSchema.methods.validatePassword = async function (password: string): Promise<boolean> {
-    return await bcrypt.compare(password, this.password);
+userSchema.methods.validatePassword = async function (password: string, userPassword: string): Promise<boolean> {
+    return await bcrypt.compare(password, userPassword);
 };
 
 export default model<IUser>('User', userSchema);
