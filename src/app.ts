@@ -4,7 +4,7 @@ import morgan from 'morgan';
 
 const app: Application = express();
 
-app.set('port', 3000);
+app.set('port', process.env.PORT || 3000);
 
 app.use(morgan('dev'));
 app.use(express.json());
