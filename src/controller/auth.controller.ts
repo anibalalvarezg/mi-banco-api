@@ -4,17 +4,16 @@ import jwt from 'jsonwebtoken';
 
 export const signUp = async (req: Request, res: Response) => {
     console.log(req.body);
-    const { email, password, rut } = req.body;
+    const { email, password } = req.body;
     const user: IUser = new User({
         email,
         password, 
-        rut,
     });
     user.password = await user.encrypPassword(password);
     try {
         const savedUser = await user.save();
         const token: string = jwt.sign({ _id: savedUser._id }, process.env.TOKEN_SECRET || 'asd1234');
-        res.header('auth-token', token).send({ rut, email, savedUser });
+        res.header('auth-token', token).send({ email, savedUser });
     } catch (error) {
         res.status(400).json({error});
     }

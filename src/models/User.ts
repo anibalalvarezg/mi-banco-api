@@ -10,12 +10,6 @@ export interface IUser extends Document {
 };
 
 const userSchema = new Schema({
-    rut: {
-        type: String,
-        required: true,
-        min: 4,
-        lowercase: true
-    },
     email: {
         type: String,
         unique: true,
