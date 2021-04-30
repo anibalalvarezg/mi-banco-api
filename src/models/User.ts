@@ -6,7 +6,7 @@ export interface IUser extends Document {
     email: string;
     password: string;
     encrypPassword(password: string): Promise<string>;
-    validatePassword(password: string): Promise<boolean>;
+    validatePassword(password: string, userPassword: string): Promise<boolean>;
 };
 
 const userSchema = new Schema({
