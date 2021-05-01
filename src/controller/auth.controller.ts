@@ -13,7 +13,11 @@ export const signUp = async (req: Request, res: Response) => {
     try {
         const savedUser = await user.save();
         const token: string = jwt.sign({ _id: savedUser._id }, process.env.TOKEN_SECRET || 'asd1234');
-        res.header('auth-token', token).send({ user: savedUser });
+        const response  = {
+            token,
+            ...savedUser
+        }
+        res.send({ error: null, data: response });
     } catch (error) {
         res.status(400).json({error});
     }
