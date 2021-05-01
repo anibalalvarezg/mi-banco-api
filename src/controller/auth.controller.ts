@@ -5,6 +5,12 @@ import jwt from 'jsonwebtoken';
 export const signUp = async (req: Request, res: Response) => {
     console.log(req.body);
     const { email, password } = req.body;
+
+    const emailExist = await User.findOne({ email });
+    if (emailExist) {
+        return res.status(400).json({error: 1, message: 'Email ya registrado'})
+    }
+    
     const user: IUser = new User({
         email,
         password, 
