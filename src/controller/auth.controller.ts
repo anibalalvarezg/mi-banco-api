@@ -13,7 +13,7 @@ export const signUp = async (req: Request, res: Response) => {
     try {
         const savedUser = await user.save();
         const token: string = jwt.sign({ _id: savedUser._id }, process.env.TOKEN_SECRET || 'asd1234');
-        res.header('auth-token', token).send({ email, savedUser });
+        res.header('auth-token', token).send({ user: savedUser });
     } catch (error) {
         res.status(400).json({error});
     }
@@ -38,5 +38,4 @@ export const profile = async (req: Request, res: Response) => {
     const user = await User.findById(req.userId, { password: 0 });
     if (!user) return res.status(404).json({error: 'User not found.'});
     res.json(user);
-
 };
