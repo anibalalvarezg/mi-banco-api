@@ -4,10 +4,13 @@ export interface ITransfer extends Document {
     name: string;
     rut: string;
     accountType: string;
+    bank: string;
     ammount: string;
     recipientId: string;
     userId: string;
+    amount: number;
 };
+
 
 const transferSchema = new Schema({
     name: {
@@ -34,6 +37,14 @@ const transferSchema = new Schema({
         type: String,
         lowercase: true
     },
+    bank: {
+        type: String,
+        lowercase: true
+    },
+    amount: {
+        type: Number,
+        lowercase: true
+    }
 
 }, {
     timestamps: true
