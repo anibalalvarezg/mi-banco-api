@@ -12,32 +12,26 @@ export interface ITransfer extends Document {
 const transferSchema = new Schema({
     name: {
         type: String,
-        unique: true,
         lowercase: true
     },
     rut: {
         type: String,
-        unique: true,
         lowercase: true
     },
     accountType: {
         type: String,
-        unique: true,
         lowercase: true
     },
     ammount: {
         type: Number,
-        unique: true,
         lowercase: true
     },
     recipientId: {
         type: String,
-        unique: true,
         lowercase: true
     },
     userId: {
         type: String,
-        unique: true,
         lowercase: true
     },
 
