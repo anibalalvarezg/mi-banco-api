@@ -35,8 +35,15 @@ export const createRecipient = async (req: Request, res: Response) => {
 }
 
 export const getAllRecipients = async (req: Request, res: Response) => {
+    const { userId } = req.body;
+
     try {
-        const recipients = await Recipient.find();
+        let recipients;
+        if(userId) {
+            recipients = await Recipient.find({userId});
+        } else {
+            recipients = await Recipient.find({});
+        }
         res.send({ error: null, data: recipients });
     } catch(error) {
         res.status(400).json({error: 1, message: 'Insert data error'});

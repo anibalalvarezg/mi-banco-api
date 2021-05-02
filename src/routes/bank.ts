@@ -2,14 +2,15 @@ import { createRecipient, getAllRecipients } from '../controller/recipient.contr
 import { Router } from 'express';
 import { verifyToken } from '../middleware/validateToken';
 import { getAllAccounts } from '../controller/account.controller';
+import { transfer } from '../controller/transfer.controller';
 
 const router: Router = Router();
 
 router.post('/new-recipient', verifyToken, createRecipient);
-router.get('/recipients', verifyToken, getAllRecipients);
+router.post('/recipients', verifyToken, getAllRecipients);
 
 router.get('/accounts', verifyToken, getAllAccounts);
-// router.post('/signin', signIn);
-// router.get('/profile', verifyToken, profile);
+
+router.post('/transfer', verifyToken, transfer);
 
 export default router;
