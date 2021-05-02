@@ -3,7 +3,6 @@ import User, { IUser } from '../models/User';
 import jwt from 'jsonwebtoken';
 
 export const signUp = async (req: Request, res: Response) => {
-    console.log(req.body);
     const { email, password } = req.body;
 
     const emailExist = await User.findOne({ email });
@@ -15,8 +14,9 @@ export const signUp = async (req: Request, res: Response) => {
         email,
         password, 
     });
-    user.password = await user.encrypPassword(password);
+
     try {
+        user.password = await user.encrypPassword(password);
         const savedUser = await user.save();
         const token: string = jwt.sign({ _id: savedUser._id }, process.env.TOKEN_SECRET || 'asd1234');
         const response  = {
@@ -32,10 +32,10 @@ export const signUp = async (req: Request, res: Response) => {
 export const signIn = async (req: Request, res: Response) => {
     const { email, password } = req.body;
     const user = await User.findOne({ email });
-    if (!user) return res.status(400).json({ error: 400, message: 'Email or password is wrong' });
+    if (!user) return res.status(400).json({ error: 1, message: 'Email or password is wrong' });
 
     const correctPass = await user.validatePassword(password, user.password);
-    if(!correctPass) return res.status(400).json({ error: 400, message: 'Invalid password' });
+    if(!correctPass) return res.status(400).json({ error: 2, message: 'Invalid password' });
 
     const token: string = jwt.sign({ _id: user._id }, process.env.TOKEN_SECRET || 'asd1234', {
         expiresIn: 60 * 60 * 24,
@@ -46,6 +46,6 @@ export const signIn = async (req: Request, res: Response) => {
 
 export const profile = async (req: Request, res: Response) => {
     const user = await User.findById(req.userId, { password: 0 });
-    if (!user) return res.status(404).json({error: 'User not found.'});
+    if (!user) return res.status(404).json({error: 1, message: 'User not found.'});
     res.json(user);
 };
