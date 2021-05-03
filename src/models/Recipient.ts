@@ -19,7 +19,6 @@ const recipientSchema = new Schema({
     },
     rut: {
         type: String,
-        unique: true,
         required: true,
         lowercase: true
     },
