@@ -23,15 +23,15 @@ Database: MongoDB
 
 ## Endpoints
 
-/api/auth/signup
-/api/auth/signin
-/api/auth/profile
+*/api/auth/signup
+*/api/auth/signin
+*/api/auth/profile
 
-/api/bank/new-recipient
-/api/bank/recipients
-/api/bank/accounts
-/api/bank/transfer
-/api/bank/transfer-history
+*/api/bank/new-recipient
+*/api/bank/recipients
+*/api/bank/accounts
+*/api/bank/transfer
+*/api/bank/transfer-history
 
 ## Instalation and run server
 
