@@ -1,8 +1,11 @@
 # mi-banco-api
 
 https://mi-banco-api.herokuapp.com/ (Heroku)
+
 API: Nodejs + Express
+
 Database: MongoDB
+
 ## External libraries 
 
 *bcryptjs
