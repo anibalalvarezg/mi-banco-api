@@ -1,8 +1,11 @@
 # mi-banco-api
 
 https://mi-banco-api.herokuapp.com/ (Heroku)
+
 API: Nodejs + Express
+
 Database: MongoDB
+
 ## External libraries 
 
 *bcryptjs
@@ -24,13 +27,20 @@ Database: MongoDB
 ## Endpoints
 
 /api/auth/signup
+
 /api/auth/signin
+
 /api/auth/profile
 
+
 /api/bank/new-recipient
+
 /api/bank/recipients
+
 /api/bank/accounts
+
 /api/bank/transfer
+
 /api/bank/transfer-history
 
 ## Instalation and run server
